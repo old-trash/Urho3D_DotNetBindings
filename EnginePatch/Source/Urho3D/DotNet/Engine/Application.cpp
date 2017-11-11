@@ -5,14 +5,14 @@ using namespace Urho3D;
 extern "C"
 {
 
-URHO3D_API Application* Application_Application(Context* context)
+URHO3D_API Application* Application_Application(Context* nativeContext)
 {
-    return new Application(context);
+    return new Application(nativeContext);
 }
 
-URHO3D_API int Application_Run(Application* nativeObject)
+URHO3D_API int Application_Run(Application* nativeInstance)
 {
-    return nativeObject->Run();
+    return nativeInstance->Run();
 }
 
 }
