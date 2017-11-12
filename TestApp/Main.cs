@@ -6,8 +6,7 @@ static class MainClass
     static int Main()
     {
         ProcessUtils.ParseArguments(Environment.CommandLine);
-        Context context = new Context();
-        MyApplication app = new MyApplication(context);
+        MyApplication app = new MyApplication(new Context());
         return app.Run();
     }
 }
