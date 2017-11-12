@@ -4,7 +4,7 @@
 Build https://github.com/1vanK/Urho3D as x32 DLL.
 
 ### 2. Building Bindings
-1) If you compiled the DLL as Release, in file "Consts.cs" change "Urho3D_d" to "Urho3D".
+1) If you compiled the DLL as Release, in file "Bindings/Consts.cs" change "Urho3D_d" to "Urho3D".
 2) Run "Bindings/Build.bat".
 
 ### 3. Test
