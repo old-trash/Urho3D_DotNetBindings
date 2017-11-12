@@ -1,4 +1,4 @@
 set "PATH=c:\windows\microsoft.net\framework\v4.0.30319\"
 del DotNetBindings.dll
-csc /target:library /out:DotNetBindings.dll /platform:x86 *.cs Container\*.cs Core\*.cs Engine\*.cs
+csc /target:library /out:DotNetBindings.dll /platform:x86 Container\*.cs Core\*.cs Engine\*.cs IO\*.cs *.cs
 pause
