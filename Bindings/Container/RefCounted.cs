@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-abstract public class RefCounted
+public abstract class RefCounted
 {
     internal IntPtr NativeInstance { get; private set; }
     
