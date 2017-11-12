@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
+// FIX to match master
 public enum LogLevel
 {
     Raw = -1,
