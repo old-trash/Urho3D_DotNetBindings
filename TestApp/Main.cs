@@ -3,10 +3,17 @@ using System.Runtime.InteropServices;
 
 static class MainClass
 {
-    static void Main()
+    static int Main()
     {
-        IntPtr nativeContext = Context.Context_Context();
-        IntPtr nativeApplication = Application.Application_Application(nativeContext);
-        Application.Application_Run(nativeApplication);
+        Context context = new Context();
+        MyApplication app = new MyApplication(context);
+        return app.Run();
+    }
+}
+
+class MyApplication : Application
+{
+    public MyApplication(Context context) : base(context)
+    {
     }
 }
