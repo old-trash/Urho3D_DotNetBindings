@@ -17,9 +17,19 @@ class MyApplication : Application
     public MyApplication(Context context) : base(context)
     {
     }
-    
+
+    public override void Setup()
+    {
+        Console.WriteLine("!!!!!!!!!!!!!!!!!!!!! Setup()");
+    }
+
     public override void Start()
     {
-        Log.Write(LogLevel.Info, "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        Log.Write(LogLevel.Info, "!!!!!!!!!!!!!!!!!!!!! Start()");
+    }
+
+    public override void Stop()
+    {
+        Console.WriteLine("!!!!!!!!!!!!!!!!!!!!! Stop()");
     }
 }
