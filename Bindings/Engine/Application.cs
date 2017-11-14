@@ -3,8 +3,11 @@ using System.Runtime.InteropServices;
 
 public class Application : Object
 {
+    protected VariantMap engineParameters_;
+
     public Application(Context context) : base(ApplicationEXT_ApplicationEXT(context.NativeInstance))
     {
+        engineParameters_ = new VariantMap(ApplicationEXT_GetEngineParametersPtr(NativeInstance));
         ApplicationEXT_SetCallback_Setup(NativeInstance, Setup);
         ApplicationEXT_SetCallback_Start(NativeInstance, Start);
         ApplicationEXT_SetCallback_Stop(NativeInstance, Stop);
@@ -43,4 +46,7 @@ public class Application : Object
 
     [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)] 
     private static extern void ApplicationEXT_SetCallback_Stop(IntPtr nativeInstance, void_function_void callback);
+    
+    [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)] 
+    private static extern IntPtr ApplicationEXT_GetEngineParametersPtr(IntPtr nativeInstance);
 }

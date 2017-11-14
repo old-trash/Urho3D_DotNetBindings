@@ -20,6 +20,18 @@ class MyApplication : Application
     public override void Setup()
     {
         Console.WriteLine("!!!!!!!!!!!!!!!!!!!!! Setup()");
+        
+        
+        VariantValue varVal = new VariantValue();
+        varVal.Int = 500;
+        
+        Console.WriteLine("TEST VARVAL " + varVal.Int);
+   
+        engineParameters_[EngineParameters.WindowWidth] = new Variant(800);
+        engineParameters_[EngineParameters.WindowHeight] = new Variant(600);
+        engineParameters_[EngineParameters.FullScreen] = new Variant(false);
+        
+        Console.WriteLine("\nWINDOW WIDTH = " + engineParameters_["WindowWidth"].Value.Int);
     }
 
     public override void Start()
