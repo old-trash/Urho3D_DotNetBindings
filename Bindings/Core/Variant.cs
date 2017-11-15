@@ -120,7 +120,7 @@ public class VariantMap
     
     [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)] 
     private static extern void VariantMap_GetValue(IntPtr nativeInstance, StringHash key, out Variant value);
-
+    
     [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)] 
     private static extern void VariantMap_SetValue(IntPtr nativeInstance, StringHash key, ref Variant value);
 }

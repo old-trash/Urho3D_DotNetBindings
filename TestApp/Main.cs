@@ -31,7 +31,7 @@ class MyApplication : Application
         engineParameters_[EngineParameters.WindowHeight] = new Variant(600);
         engineParameters_[EngineParameters.FullScreen] = new Variant(false);
         
-        Console.WriteLine("\nWINDOW WIDTH = " + engineParameters_["WindowWidth"].Value.Int);
+        Console.WriteLine("\nWINDOW WIDTH = " + engineParameters_[EngineParameters.WindowHeight].Value.Int);
     }
 
     public override void Start()
