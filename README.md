@@ -8,9 +8,7 @@ Build https://github.com/1vanK/Urho3D as x32 DLL.
 2) Run "Bindings/Build.bat".
 
 ### 3. Test
-1) Copy "Urho3D(_d).dll" to TestApp folder.
-2) Copy "DotNetBindings.dll" to TestApp folder.
-3) Copy "Data" and "CoreData" to TestApp folder.
-4) Run "TestApp/Build.bat".
-5) Run "TestApp/Test.exe" or "TestApp/Test.bat". You should see a black window. Alt+F4 to exit.
-
+1) Copy "Urho3D(_d).dll" to Samples folder.
+2) Copy "DotNetBindings.dll" to Samples folder.
+3) Copy "Data" and "CoreData" to Samples folder.
+4) Run "Samples/BuildAll.bat".
