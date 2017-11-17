@@ -22,13 +22,13 @@ class Sample : Application
         //engineParameters_[EP_LOG_NAME]     = GetSubsystem<FileSystem>()->GetAppPreferencesDir("urho3d", "logs") + GetTypeName() + ".log";
         engineParameters_[EngineParameters.FullScreen]   = new Variant(false);
         engineParameters_[EngineParameters.Headless]     = new Variant(false);
-        engineParameters_[EngineParameters.Sound]        = new Variant(false);
+        engineParameters_[EngineParameters.FrameLimiter] = new Variant(false);
     }
     
     void HandleUpdate(IntPtr eventData)
     {
         VariantMap map = new VariantMap(eventData);
-        Console.WriteLine("UPDATE " + map["TimeStep"].Value.Float + "s");
+        //Console.WriteLine("UPDATE " + map["TimeStep"].Value.Float + "s");
     }
 
     public override void Start()
@@ -37,7 +37,12 @@ class Sample : Application
         Input input = context_.GetSubsystem<Input>();
         //input.SetMouseMode(MouseMode.Free);
         input.SetMouseVisible(true);
-       
+        
+        Engine engine = context_.GetSubsystem<Engine>();
+        engine.CreateDebugHud();
+        
+        DebugHud debugHud = context_.GetSubsystem<DebugHud>();
+        debugHud.ToggleAll();
     }
 
     public override void Stop()
