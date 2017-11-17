@@ -5,7 +5,7 @@ public class Application : Object
 {
     protected VariantMap engineParameters_;
 
-    public Application(Context context) : base(ApplicationEXT_ApplicationEXT(context.NativeInstance))
+    public Application(Context context) : base(ApplicationEXT_ApplicationEXT(context.NativeInstance), context)
     {
         engineParameters_ = new VariantMap(ApplicationEXT_GetEngineParametersPtr(NativeInstance));
         ApplicationEXT_SetCallback_Setup(NativeInstance, Setup);

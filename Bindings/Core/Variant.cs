@@ -18,6 +18,9 @@ public struct VariantValue
 
     [FieldOffset(0)]
     public bool Bool;
+    
+    [FieldOffset(0)]
+    public float Float;
 
     [FieldOffset(0)]
     public VariantStorage Storage; // Should be last??????
@@ -79,16 +82,33 @@ public struct Variant
         Value = new VariantValue();
         Value.Bool = value;
     }
+    
+    public Variant(float value)
+    {
+        Type = VariantType.Float;
+        Value = new VariantValue();
+        Value.Float = value;
+    }
 }
 
 public class VariantMap
 {
     private IntPtr nativeInstance;
+    
+    public IntPtr NativeInstance
+    {
+        get { return nativeInstance; }
+    }
 
     public VariantMap(IntPtr nativeInstance)
     {
         this.nativeInstance = nativeInstance;
     }
+    
+    /*public VariantMap() // WARNING: NO DESTRUCTOR
+    {
+        nativeInstance = VariantMap_VariantMap();
+    }*/
 
     public Variant this[StringHash key]
     {
@@ -117,6 +137,9 @@ public class VariantMap
             this[new StringHash(key)] = value;
         }
     }
+    
+    [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)] 
+    private static extern IntPtr VariantMap_VariantMap();
     
     [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)] 
     private static extern void VariantMap_GetValue(IntPtr nativeInstance, StringHash key, out Variant value);
