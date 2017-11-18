@@ -22,6 +22,7 @@ public class Application : Object
         ApplicationEXT_SetCallback_Stop(NativeInstance, StopHandle);
     }
     
+    [MethodImpl(MethodImplOptions.NoOptimization)]
     public int Run()
     {
         return ApplicationEXT_Run(NativeInstance);
