@@ -11,7 +11,15 @@ public class DebugHud : Object
     {
         DebugHud_ToggleAll(NativeInstance);
     }
+    
+    public void SetDefaultStyle(XMLFile style)
+    {
+        DebugHud_SetDefaultStyle(NativeInstance, style.NativeInstance);
+    }
 
     [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     private static extern void DebugHud_ToggleAll(IntPtr nativeInstance);
+    
+    [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    private static extern void DebugHud_SetDefaultStyle(IntPtr nativeInstance, IntPtr style);
 }

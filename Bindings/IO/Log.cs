@@ -18,5 +18,5 @@ public static class Log
     public static extern void Write(LogLevel level, string message);
 
     [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="Log_WriteRaw")] 
-    public static extern void WriteRaw(string message, bool error = true);
+    public static extern void WriteRaw(string message, bool error = false);
 }

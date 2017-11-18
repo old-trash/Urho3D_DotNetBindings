@@ -7,9 +7,9 @@ public class Engine : Object
     {
     }
     
-    public void CreateDebugHud()
+    public DebugHud CreateDebugHud()
     {
-        Engine_CreateDebugHud(NativeInstance);
+        return new DebugHud(Engine_CreateDebugHud(NativeInstance), context_);
     }
 
     [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)]

@@ -23,6 +23,7 @@ class Sample : Application
         engineParameters_[EngineParameters.FullScreen]   = new Variant(false);
         engineParameters_[EngineParameters.Headless]     = new Variant(false);
         engineParameters_[EngineParameters.FrameLimiter] = new Variant(false);
+        GC.Collect(); // FOR TEST ONLY
     }
     
     void HandleUpdate(IntPtr eventData)
@@ -39,14 +40,24 @@ class Sample : Application
         input.SetMouseVisible(true);
         
         Engine engine = context_.GetSubsystem<Engine>();
-        engine.CreateDebugHud();
+        DebugHud debugHud = engine.CreateDebugHud();
         
-        DebugHud debugHud = context_.GetSubsystem<DebugHud>();
+        ResourceCache cache = GetSubsystem<ResourceCache>();
+        XMLFile xmlFile = cache.GetResource<XMLFile>("UI/DefaultStyle.xml");
+        
+        debugHud.SetDefaultStyle(xmlFile);
         debugHud.ToggleAll();
+        GC.Collect(); // FOR TEST ONLY
+        
+        CreateLogo();
     }
 
     public override void Stop()
     {
         Console.WriteLine("!!!!!!!!!!!!!!!!!!!!! Stop()");
+    }
+    
+    void CreateLogo()
+    {
     }
 }

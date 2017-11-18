@@ -20,8 +20,11 @@ public class Object : RefCounted
         Object_SubscribeToEvent(NativeInstance, eventType, function);
     }
     
-    
-    
+    public T GetSubsystem<T>()
+    {
+        return context_.GetSubsystem<T>();
+    }
+
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     public delegate void HandleEventFunction(IntPtr variantMapPtr);
 

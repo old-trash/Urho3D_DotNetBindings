@@ -27,8 +27,8 @@ public class Input : Object
     }
     
     [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    private static extern void Input_SetMouseMode(IntPtr nativeInstance, MouseMode mode, bool suppressEvent);
+    private static extern void Input_SetMouseMode(IntPtr nativeInstance, MouseMode mode, bool suppressEvent = false);
 
     [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    private static extern void Input_SetMouseVisible(IntPtr nativeInstance, bool enable, bool suppressEvent);
+    private static extern void Input_SetMouseVisible(IntPtr nativeInstance, bool enable, bool suppressEvent = false);
 }
