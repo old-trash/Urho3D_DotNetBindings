@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-public abstract class RefCounted
+public abstract class RefCounted : IDisposable
 {
     internal IntPtr NativeInstance { get; private set; }
     
@@ -13,7 +13,28 @@ public abstract class RefCounted
     
     ~RefCounted()
     {
-        RefCounted_ReleaseRef(NativeInstance);
+        Dispose(false);
+    }
+    
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+    
+    private bool disposed = false;
+    
+    protected virtual void Dispose(bool disposing)
+    {
+        if(!this.disposed)
+        {
+            if(disposing)
+            {
+            }
+
+            RefCounted_ReleaseRef(NativeInstance);
+            disposed = true;
+        }
     }
 
     [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)] 
