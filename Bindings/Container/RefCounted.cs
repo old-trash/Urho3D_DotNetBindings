@@ -8,12 +8,23 @@ public abstract class RefCounted : IDisposable
     protected RefCounted(IntPtr nativeInstance)
     {
         NativeInstance = nativeInstance;
-        RefCounted_AddRef(NativeInstance);
+        if (NativeInstance != IntPtr.Zero)
+            RefCounted_AddRef(NativeInstance);
     }
     
     ~RefCounted()
     {
         Dispose(false);
+    }
+    
+    public bool IsNull()
+    {
+        return NativeInstance == IntPtr.Zero;
+    }
+    
+    public static bool operator !(RefCounted r)
+    {
+        return r.IsNull();
     }
     
     public void Dispose()
@@ -32,7 +43,8 @@ public abstract class RefCounted : IDisposable
             {
             }
 
-            RefCounted_ReleaseRef(NativeInstance);
+            if (NativeInstance != IntPtr.Zero)
+                RefCounted_ReleaseRef(NativeInstance);
             disposed = true;
         }
     }

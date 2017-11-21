@@ -70,6 +70,8 @@ class Sample : Application
     {
         ResourceCache cache = GetSubsystem<ResourceCache>();
         Texture2D logoTexture = cache.GetResource<Texture2D>("Textures/FishBoneLogo.png");
+        if (!logoTexture)
+            return;
         
         UI ui = GetSubsystem<UI>();
         Sprite logoSprite_ = ui.GetRoot().CreateChild<Sprite>();
