@@ -30,6 +30,15 @@ class Sample : Application
     {
         VariantMap map = new VariantMap(eventData);
         //Console.WriteLine("UPDATE " + map["TimeStep"].Value.Float + "s");
+        
+        Input input = GetSubsystem<Input>();
+        if (input.GetKeyPress(Keys.F2))
+        {
+            DebugHud debugHud = GetSubsystem<DebugHud>();
+            debugHud.ToggleAll();
+        }
+        
+        GC.Collect();
     }
 
     public override void Start()
