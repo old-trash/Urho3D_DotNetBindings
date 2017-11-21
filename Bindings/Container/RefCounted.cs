@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 public abstract class RefCounted : IDisposable
 {
-    internal IntPtr NativeInstance { get; private set; }
+    public IntPtr NativeInstance { get; private set; }
     
     protected RefCounted(IntPtr nativeInstance)
     {
