@@ -7,3 +7,10 @@ public class Resource : Object
     {
     }
 }
+
+public class ResourceWithMetadata : Resource
+{
+    public ResourceWithMetadata(IntPtr nativeInstance, Context context) : base(nativeInstance, context)
+    {
+    }
+}
