@@ -50,15 +50,6 @@ public class UIElement : Animatable
         UIElement_SetSize(NativeInstance, width, height);
     }
 
-    
-/*   
-   
-    UIElement_SetOpacity
-    
-    UIElement_SetAlignment
-    
-    UIElement_SetSize*/
-
     [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     private static extern IntPtr UIElement_CreateChild(IntPtr nativeInstance, StringHash type, string name = "", uint index = MathConsts.M_MAX_UNSIGNED);
 
@@ -74,66 +65,3 @@ public class UIElement : Animatable
     [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     private static extern void UIElement_SetSize(IntPtr nativeInstance, int width, int height);
 }
-
-
-
-/*
-
-// UIElement* CreateChild(StringHash type, const String& name = String::EMPTY, unsigned index = M_MAX_UNSIGNED);
-// КЛАСС = UIElement, ВОЗВРАЩАЕМЫЙ ТИП = UIElement*, ИМЯ = CreateChild, ПАРАМЕТРЫ = StringHash type, const String& name = String::EMPTY, unsigned index = M_MAX_UNSIGNED
-// C++
-URHO3D_API UIElement* UIElement_CreateChild(UIElement* nativeInstance, StringHash type, const char* name = "", unsigned index = M_MAX_UNSIGNED)
-{
-    return nativeInstance->CreateChild(type, name, index);
-}
-// C#
-
-
-
-
-// КЛАСС = UIElement, ВОЗВРАЩАЕМЫЙ ТИП = void, ИМЯ = SetPriority, ПАРАМЕТРЫ = int priority
-// C++
-URHO3D_API void UIElement_SetPriority(UIElement* nativeInstance, int priority)
-{
-    nativeInstance->SetPriority(priority);
-}
-// C#
-
-
-
-    /// Set opacity.
-    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// void SetOpacity(float opacity);
-// КЛАСС = UIElement, ВОЗВРАЩАЕМЫЙ ТИП = void, ИМЯ = SetOpacity, ПАРАМЕТРЫ = float opacity
-// C++
-URHO3D_API void UIElement_SetOpacity(UIElement* nativeInstance, float opacity)
-{
-    nativeInstance->SetOpacity(opacity);
-}
-// C#
-
-
-    /// Set horizontal and vertical alignment.
-    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// void SetAlignment(HorizontalAlignment hAlign, VerticalAlignment vAlign);
-// КЛАСС = UIElement, ВОЗВРАЩАЕМЫЙ ТИП = void, ИМЯ = SetAlignment, ПАРАМЕТРЫ = HorizontalAlignment hAlign, VerticalAlignment vAlign
-// C++
-URHO3D_API void UIElement_SetAlignment(UIElement* nativeInstance, HorizontalAlignment hAlign, VerticalAlignment vAlign)
-{
-    nativeInstance->SetAlignment(hAlign, vAlign);
-}
-// C#
-
-
-    /// Set size.
-    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// void SetSize(int width, int height);
-// КЛАСС = UIElement, ВОЗВРАЩАЕМЫЙ ТИП = void, ИМЯ = SetSize, ПАРАМЕТРЫ = int width, int height
-// C++
-URHO3D_API void UIElement_SetSize(UIElement* nativeInstance, int width, int height)
-{
-    nativeInstance->SetSize(width, height);
-}
-// C#
-
-*/

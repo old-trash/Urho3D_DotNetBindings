@@ -59,5 +59,13 @@ class Sample : Application
     
     void CreateLogo()
     {
+        ResourceCache cache = GetSubsystem<ResourceCache>();
+        Texture2D logoTexture = cache.GetResource<Texture2D>("Textures/FishBoneLogo.png");
+        
+        UI ui = GetSubsystem<UI>();
+        Sprite logoSprite_ = ui.GetRoot().CreateChild<Sprite>();
+        logoSprite_.SetTexture(logoTexture);
+        
+        logoSprite_.SetSize(256, 128);
     }
 }
