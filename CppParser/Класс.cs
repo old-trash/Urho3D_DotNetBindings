@@ -118,7 +118,7 @@ class Класс
         {
             if (параметры == "")
             {
-                результат += Имя + "* nativeInstance);\n";
+                результат += Имя + "* nativeInstance)\n";
                 заголовок_CSharp += "IntPtr nativeInstance);\n";
             }
             else
