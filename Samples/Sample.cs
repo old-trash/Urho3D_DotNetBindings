@@ -4,13 +4,6 @@ using System.Reflection;
 
 class Sample : Application
 {
-    static int Main()
-    {
-        ProcessUtils.ParseArguments(Environment.CommandLine);
-        Sample app = new Sample(new Context());
-        return app.Run();
-    }
-
     public Sample(Context context) : base(context)
     {
         SubscribeToEvent(new StringHash("Update"), HandleUpdate);
@@ -66,17 +59,42 @@ class Sample : Application
         Console.WriteLine("!!!!!!!!!!!!!!!!!!!!! Stop()");
     }
     
+    Sprite logoSprite_;
+    
     void CreateLogo()
     {
+        // Get logo texture
         ResourceCache cache = GetSubsystem<ResourceCache>();
         Texture2D logoTexture = cache.GetResource<Texture2D>("Textures/FishBoneLogo.png");
         if (!logoTexture)
             return;
         
+        // Create logo sprite and add to the UI layout
         UI ui = GetSubsystem<UI>();
-        Sprite logoSprite_ = ui.GetRoot().CreateChild<Sprite>();
-        logoSprite_.SetTexture(logoTexture);
+        logoSprite_ = ui.GetRoot().CreateChild<Sprite>();
         
-        logoSprite_.SetSize(256, 128);
+        // Set logo sprite texture
+        logoSprite_.SetTexture(logoTexture);
+
+        int textureWidth = logoTexture.GetWidth();
+        int textureHeight = logoTexture.GetHeight();
+
+        // Set logo sprite scale
+        logoSprite_.SetScale(256.0f / textureWidth);
+
+        // Set logo sprite size
+        logoSprite_.SetSize(textureWidth, textureHeight);
+
+        // Set logo sprite hot spot
+        logoSprite_.SetHotSpot(textureWidth, textureHeight);
+
+        // Set logo sprite alignment
+        logoSprite_.SetAlignment(HorizontalAlignment.RIGHT, VerticalAlignment.BOTTOM);
+
+        // Make logo not fully opaque to show the scene underneath
+        logoSprite_.SetOpacity(0.9f);
+
+        // Set a low priority for the logo so that other UI elements can be drawn on top
+        logoSprite_.SetPriority(-100);
     }
 }

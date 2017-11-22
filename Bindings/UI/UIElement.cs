@@ -3,18 +3,18 @@ using System.Runtime.InteropServices;
 
 public enum HorizontalAlignment
 {
-    HA_LEFT = 0,
-    HA_CENTER,
-    HA_RIGHT,
-    HA_CUSTOM
+    LEFT = 0,
+    CENTER,
+    RIGHT,
+    CUSTOM
 }
 
 public enum VerticalAlignment
 {
-    VA_TOP = 0,
-    VA_CENTER,
-    VA_BOTTOM,
-    VA_CUSTOM
+    TOP = 0,
+    CENTER,
+    BOTTOM,
+    CUSTOM
 }
 
 public class UIElement : Animatable
@@ -49,6 +49,26 @@ public class UIElement : Animatable
     {
         UIElement_SetSize(NativeInstance, width, height);
     }
+    
+    public void SetColor(ref Color color)
+    {
+        UIElement_SetColor(NativeInstance, ref color);
+    }
+    
+    public void SetVerticalAlignment(VerticalAlignment align)
+    {
+        UIElement_SetVerticalAlignment(NativeInstance, align);
+    }
+
+    public void SetHorizontalAlignment(HorizontalAlignment align)
+    {
+        UIElement_SetHorizontalAlignment(NativeInstance, align);
+    }
+    
+    public void AddChild(UIElement element)
+    {
+        UIElement_AddChild(NativeInstance, element.NativeInstance);
+    }
 
     [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     private static extern IntPtr UIElement_CreateChild(IntPtr nativeInstance, StringHash type, string name = "", uint index = MathConsts.M_MAX_UNSIGNED);
@@ -64,4 +84,16 @@ public class UIElement : Animatable
     
     [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     private static extern void UIElement_SetSize(IntPtr nativeInstance, int width, int height);
+    
+    [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    private static extern void UIElement_SetColor(IntPtr nativeInstance, ref Color color);
+    
+    [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    private static extern void UIElement_SetHorizontalAlignment(IntPtr nativeInstance, HorizontalAlignment align);
+    
+    [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    private static extern void UIElement_SetVerticalAlignment(IntPtr nativeInstance, VerticalAlignment align);
+    
+    [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    private static extern void UIElement_AddChild(IntPtr nativeInstance, IntPtr element);
 }
