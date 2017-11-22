@@ -52,7 +52,7 @@ public class UIElement : Animatable
         UIElement_SetSize(NativeInstance, width, height);
     }
     
-    public void SetColor(ref Color color)
+    public void SetColor(Color color)
     {
         UIElement_SetColor(NativeInstance, ref color);
     }

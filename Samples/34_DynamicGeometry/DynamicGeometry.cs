@@ -52,8 +52,7 @@ class DynamicGeometry : Sample
         Node zoneNode = scene_.CreateChild("Zone");
         Zone zone = zoneNode.CreateComponent<Zone>();
         //zone->SetBoundingBox(BoundingBox(-1000.0f, 1000.0f));
-        Color c = new Color(0.2f, 1.0f, 0.2f);
-        zone.SetFogColor(ref c);
+        zone.SetFogColor(new Color(0.2f, 1.0f, 0.2f));
         //zone->SetFogStart(200.0f);
         //zone->SetFogEnd(300.0f);
     
@@ -227,8 +226,7 @@ class DynamicGeometry : Sample
     
         // Create the camera
         cameraNode_ = scene_.CreateChild();
-        Vector3 v = new Vector3(0.0f, 0.0f, 0.0f);
-        cameraNode_.SetPosition(ref v);
+        cameraNode_.SetPosition(new Vector3(0.0f, 0.0f, 0.0f));
         camera_ = cameraNode_.CreateComponent<Camera>();
         //camera->SetFarClip(300.0f);
     }

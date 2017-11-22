@@ -42,8 +42,7 @@ class HelloWorld : Sample
 
         // Set font and text color
         helloText.SetFont(cache.GetResource<Font>("Fonts/Anonymous Pro.ttf"), 30);
-        Color c = new Color(0.0f, 1.0f, 0.0f);
-        helloText.SetColor(ref c);
+        helloText.SetColor(new Color(0.0f, 1.0f, 0.0f));
 
         // Align Text center-screen
         helloText.SetHorizontalAlignment(HorizontalAlignment.CENTER);

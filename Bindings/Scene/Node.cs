@@ -28,17 +28,17 @@ public class Node : Animatable
         return new Node(nativeNode, context_);
     }
     
-    public void SetScale(ref Vector3 scale)
+    public void SetScale(Vector3 scale)
     {
         Node_SetScale(NativeInstance, ref scale);
     }
     
-    public void SetDirection(ref Vector3 direction)
+    public void SetDirection(Vector3 direction)
     {
         Node_SetDirection(NativeInstance, ref direction);
     }
     
-    public void SetPosition(ref Vector3 position)
+    public void SetPosition(Vector3 position)
     {
         Node_SetPosition(NativeInstance, ref position);
     }

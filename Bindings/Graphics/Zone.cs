@@ -9,7 +9,7 @@ public class Zone : Drawable
 
     // public Zone(Context context) : this(Zone_Zone(context.NativeInstance), context) { }
     
-    public void SetFogColor(ref Color color)
+    public void SetFogColor(Color color)
     {
         Zone_SetFogColor(NativeInstance, ref color);
     }
