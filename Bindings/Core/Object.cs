@@ -7,12 +7,15 @@ public class Object : RefCounted
 {
     protected Context context_;
     
+    // TODO: deleting
     List<HandleEventFunction> storage = new List<HandleEventFunction>();
 
-    internal Object(IntPtr nativeInstance, Context context) : base(nativeInstance)
+    public Object(IntPtr nativeInstance, Context context) : base(nativeInstance)
     {
         context_ = context;
     }
+
+    // public Object(Context context) : this(Object_Object(context.NativeInstance), context) { }
     
     protected void SubscribeToEvent(StringHash eventType, HandleEventFunction function)
     {

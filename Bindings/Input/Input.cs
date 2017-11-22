@@ -15,6 +15,8 @@ public class Input : Object
     public Input(IntPtr nativeInstance, Context context) : base(nativeInstance, context)
     {
     }
+
+    // public Input(Context context) : this(Input_Input(context.NativeInstance), context) { }
     
     public void SetMouseMode(MouseMode mode, bool suppressEvent = false)
     {

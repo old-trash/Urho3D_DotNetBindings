@@ -5,13 +5,11 @@ public class Text : UIElement
 {
     private const float DEFAULT_FONT_SIZE = 12;
 
-    public Text(Context context) : this(Text_Text(context.NativeInstance), context)
-    {
-    }
-
     public Text(IntPtr nativeInstance, Context context) : base(nativeInstance, context)
     {
     }
+
+    public Text(Context context) : this(Text_Text(context.NativeInstance), context) { }
     
     public void SetText(string text)
     {

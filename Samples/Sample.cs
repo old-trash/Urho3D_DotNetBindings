@@ -16,7 +16,7 @@ class Sample : Application
         engineParameters_[EngineParameters.FullScreen]   = new Variant(false);
         engineParameters_[EngineParameters.Headless]     = new Variant(false);
         engineParameters_[EngineParameters.FrameLimiter] = new Variant(false);
-        GC.Collect(); // FOR TEST ONLY
+        //GC.Collect(); // FOR TEST ONLY
     }
     
     void HandleUpdate(IntPtr eventData)
@@ -31,7 +31,7 @@ class Sample : Application
             debugHud.ToggleAll();
         }
         
-        GC.Collect();
+        //GC.Collect();
     }
 
     public override void Start()
@@ -49,7 +49,7 @@ class Sample : Application
         
         debugHud.SetDefaultStyle(xmlFile);
         debugHud.ToggleAll();
-        GC.Collect(); // FOR TEST ONLY
+        //GC.Collect(); // FOR TEST ONLY
         
         CreateLogo();
     }

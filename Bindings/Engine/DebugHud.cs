@@ -7,6 +7,8 @@ public class DebugHud : Object
     {
     }
     
+    // public DebugHud(Context context) : this(DebugHud_DebugHud(context.NativeInstance), context) { }
+    
     public void ToggleAll()
     {
         DebugHud_ToggleAll(NativeInstance);

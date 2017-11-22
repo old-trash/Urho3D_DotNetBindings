@@ -6,7 +6,9 @@ public class Sprite : UIElement
     public Sprite(IntPtr nativeInstance, Context context) : base(nativeInstance, context)
     {
     }
-    
+
+    // public Sprite(Context context) : this(Sprite_Sprite(context.NativeInstance), context) { }
+
     public void SetTexture(Texture texture)
     {
         Sprite_SetTexture(NativeInstance, texture.NativeInstance);

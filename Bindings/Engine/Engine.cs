@@ -6,6 +6,8 @@ public class Engine : Object
     public Engine(IntPtr nativeInstance, Context context) : base(nativeInstance, context)
     {
     }
+
+    // public Engine(Context context) : this(Engine_Engine(context.NativeInstance), context) { }
     
     public DebugHud CreateDebugHud()
     {

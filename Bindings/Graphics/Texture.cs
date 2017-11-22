@@ -7,6 +7,8 @@ public class Texture : ResourceWithMetadata
     {
     }
     
+    // public Texture(Context context) : this(Texture_Texture(context.NativeInstance), context) { }
+    
     public int GetWidth()
     {
         return Texture_GetWidth(NativeInstance);

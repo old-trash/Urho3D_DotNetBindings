@@ -22,7 +22,9 @@ public class UIElement : Animatable
     public UIElement(IntPtr nativeInstance, Context context) : base(nativeInstance, context)
     {
     }
-    
+
+    // public UIElement(Context context) : this(UIElement_UIElement(context.NativeInstance), context) { }
+
     public T CreateChild<T>(string name = "", uint index = MathConsts.M_MAX_UNSIGNED)
     {
         StringHash type = new StringHash(typeof(T).Name);

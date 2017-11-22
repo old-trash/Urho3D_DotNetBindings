@@ -93,35 +93,25 @@ public struct Variant
 
 public class VariantMap
 {
-    private IntPtr nativeInstance;
-    
-    public IntPtr NativeInstance
-    {
-        get { return nativeInstance; }
-    }
+    public IntPtr NativeInstance { get; private set; }
 
     public VariantMap(IntPtr nativeInstance)
     {
-        this.nativeInstance = nativeInstance;
+        NativeInstance = nativeInstance;
     }
-    
-    /*public VariantMap() // WARNING: NO DESTRUCTOR
-    {
-        nativeInstance = VariantMap_VariantMap();
-    }*/
 
     public Variant this[StringHash key]
     {
         get
         {
             Variant value;
-            VariantMap_GetValue(nativeInstance, key, out value);
+            VariantMap_GetValue(NativeInstance, key, out value);
             return value;
         }
         
         set
         {
-            VariantMap_SetValue(nativeInstance, key, ref value);
+            VariantMap_SetValue(NativeInstance, key, ref value);
         }
     }
 
@@ -137,9 +127,6 @@ public class VariantMap
             this[new StringHash(key)] = value;
         }
     }
-    
-    [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)] 
-    private static extern IntPtr VariantMap_VariantMap();
     
     [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)] 
     private static extern void VariantMap_GetValue(IntPtr nativeInstance, StringHash key, out Variant value);

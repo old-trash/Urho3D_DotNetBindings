@@ -7,6 +7,8 @@ public class UI : Object
     {
     }
     
+    // public UI(Context context) : this(UI_UI(context.NativeInstance), context) { }
+    
     public UIElement GetRoot()
     {
         return new UIElement(UI_GetRoot(NativeInstance), context_);

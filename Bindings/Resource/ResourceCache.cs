@@ -6,6 +6,8 @@ public class ResourceCache : Object
     public ResourceCache(IntPtr nativeInstance, Context context) : base(nativeInstance, context)
     {
     }
+
+    // public ResourceCache(Context context) : this(ResourceCache_ResourceCache(context.NativeInstance), context) { }
     
     public T GetResource<T>(string name, bool sendEventOnFailure = true)
     {

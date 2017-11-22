@@ -9,8 +9,8 @@ public class Application : Object
     void_function_void SetupHandle = null;
     void_function_void StartHandle = null;
     void_function_void StopHandle = null;    
-
-    public Application(Context context) : base(ApplicationEXT_ApplicationEXT(context.NativeInstance), context)
+    
+    private Application(IntPtr nativeInstance, Context context) : base(nativeInstance, context)
     {
         SetupHandle = Setup;
         StartHandle = Start;
@@ -21,6 +21,8 @@ public class Application : Object
         ApplicationEXT_SetCallback_Start(NativeInstance, StartHandle);
         ApplicationEXT_SetCallback_Stop(NativeInstance, StopHandle);
     }
+
+    public Application(Context context) : this(ApplicationEXT_ApplicationEXT(context.NativeInstance), context) { }
     
     [MethodImpl(MethodImplOptions.NoOptimization)]
     public int Run()
