@@ -25,7 +25,7 @@ public class UIElement : Animatable
 
     // public UIElement(Context context) : this(UIElement_UIElement(context.NativeInstance), context) { }
 
-    public T CreateChild<T>(string name = "", uint index = MathConsts.M_MAX_UNSIGNED)
+    public T CreateChild<T>(string name = "", uint index = Math.M_MAX_UNSIGNED)
     {
         StringHash type = new StringHash(typeof(T).Name);
         IntPtr nativeChild = UIElement_CreateChild(NativeInstance, type, name, index);
@@ -73,7 +73,7 @@ public class UIElement : Animatable
     }
 
     [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    private static extern IntPtr UIElement_CreateChild(IntPtr nativeInstance, StringHash type, string name = "", uint index = MathConsts.M_MAX_UNSIGNED);
+    private static extern IntPtr UIElement_CreateChild(IntPtr nativeInstance, StringHash type, string name = "", uint index = Math.M_MAX_UNSIGNED);
 
     [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     private static extern void UIElement_SetPriority(IntPtr nativeInstance, int priority);

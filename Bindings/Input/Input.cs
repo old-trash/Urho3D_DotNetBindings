@@ -42,6 +42,13 @@ public class Input : Object
     {
         return Input_GetKeyPress(NativeInstance, (int)key);
     }
+    
+    public IntVector2 GetMouseMove()
+    {
+        IntVector2 result;
+        Input_GetMouseMove(NativeInstance, out result);
+        return result;
+    }
 
     [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     private static extern void Input_SetMouseMode(IntPtr nativeInstance, MouseMode mode, bool suppressEvent = false);
@@ -57,4 +64,7 @@ public class Input : Object
     
     [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     private static extern bool Input_GetKeyPress(IntPtr nativeInstance, int key);
+    
+    [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    private static extern void Input_GetMouseMove(IntPtr nativeInstance, out IntVector2 result);
 }

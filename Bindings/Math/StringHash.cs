@@ -15,6 +15,11 @@ public struct StringHash
         Value = Calculate(str);
     }
 
+    public static implicit operator StringHash(string str)
+    {
+        return new StringHash(str);
+    }
+
     [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="StringHash_Calculate")]
     public static extern uint Calculate(string str);
 }

@@ -6,7 +6,7 @@ class Sample : Application
 {
     public Sample(Context context) : base(context)
     {
-        SubscribeToEvent(new StringHash("Update"), HandleUpdate);
+       // SubscribeToEvent("Update", HandleUpdate);
     }
 
     public override void Setup()
@@ -19,10 +19,11 @@ class Sample : Application
         //GC.Collect(); // FOR TEST ONLY
     }
     
-    void HandleUpdate(IntPtr eventData)
+    /*void HandleUpdate(StringHash eventType, IntPtr eventData)
     {
         VariantMap map = new VariantMap(eventData);
-        //Console.WriteLine("UPDATE " + map["TimeStep"].Value.Float + "s");
+        Console.WriteLine(eventType.Value == StringHash.Calculate("Update"));
+        Console.WriteLine("UPDATE " + map["TimeStep"].Value.Float + "s");
         
         Input input = GetSubsystem<Input>();
         if (input.GetKeyPress(Keys.F2))
@@ -32,14 +33,14 @@ class Sample : Application
         }
         
         //GC.Collect();
-    }
+    }*/
 
     public override void Start()
     {
         Log.Write(LogLevel.Info, "!!!!!!!!!!!!!!!!!!!!! Start()");
         Input input = context_.GetSubsystem<Input>();
         //input.SetMouseMode(MouseMode.Free);
-        input.SetMouseVisible(true);
+        //input.SetMouseVisible(true);
         
         Engine engine = context_.GetSubsystem<Engine>();
         DebugHud debugHud = engine.CreateDebugHud();
@@ -59,7 +60,15 @@ class Sample : Application
         Console.WriteLine("!!!!!!!!!!!!!!!!!!!!! Stop()");
     }
     
-    Sprite logoSprite_;
+    protected Sprite logoSprite_;
+    
+    protected Scene scene_;
+    /// Camera scene node.
+    protected Node cameraNode_;
+    /// Camera yaw angle.
+    protected float yaw_;
+    /// Camera pitch angle.
+    protected float pitch_;
     
     void CreateLogo()
     {

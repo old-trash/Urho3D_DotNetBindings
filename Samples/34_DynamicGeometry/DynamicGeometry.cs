@@ -34,8 +34,6 @@ class DynamicGeometry : Sample
         //Sample::InitMouseMode(MM_RELATIVE);
     }
     
-    private Scene scene_;
-    private Node cameraNode_;
     private Camera camera_;
     
     private void CreateScene()
