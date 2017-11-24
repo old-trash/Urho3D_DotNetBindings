@@ -4,10 +4,10 @@ using System.Runtime.InteropServices;
 [StructLayout(LayoutKind.Sequential)]
 public struct Quaternion
 {
-    float w_;
-    float x_;
-    float y_;
-    float z_;
+    public float w_;
+    public float x_;
+    public float y_;
+    public float z_;
 
     public Quaternion(float x = 0.0f, float y = 0.0f, float z = 0.0f, float w = 1.0f)
     {

@@ -27,6 +27,16 @@ public class Object : RefCounted
     {
         return context_.GetSubsystem<T>();
     }
+    
+    public string GetTypeName()
+    {
+        return GetType().Name;
+    }
+    
+    public StringHash GetTypeHash() // GetType() in Urho3D
+    {
+        return new StringHash(GetTypeName());
+    }
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     public delegate void void_function_StringHash_VariantMap(StringHash eventType, IntPtr nativeVariantMap);

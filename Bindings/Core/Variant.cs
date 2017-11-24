@@ -14,81 +14,114 @@ public struct VariantStorage
 public struct VariantValue
 {
     [FieldOffset(0)]
-    public int Int;
+    public int int_;
 
     [FieldOffset(0)]
-    public bool Bool;
+    public bool bool_;
     
     [FieldOffset(0)]
-    public float Float;
+    public float float_;
 
     [FieldOffset(0)]
-    public VariantStorage Storage; // Should be last??????
+    public VariantStorage storage_; // Should be last??????
 }
 
 public enum VariantType
 {
-    None = 0,
-    Int,
-    Bool,
-    Float,
-    Vector2,
-    Vector3,
-    Vector4,
-    Quaternion,
-    Color,
-    String,
-    Buffer,
-    VoidPtr,
-    ResourceRef,
-    ResourceRefList,
-    VariantVector,
-    VariantMap,
-    IntRect,
-    IntVector2,
-    Ptr,
-    Matrix3,
-    Matrix3x4,
-    Matrix4,
-    Double,
-    StringVector,
-    Rect,
-    IntVector3,
-    Int64,
-    CustomHeap,
-    CustomStack,
-    MaxVarTypes
+    VAR_NONE = 0,
+    VAR_INT,
+    VAR_BOOL,
+    VAR_FLOAT,
+    VAR_VECTOR2,
+    VAR_VECTOR3,
+    VAR_VECTOR4,
+    VAR_QUATERNION,
+    VAR_COLOR,
+    VAR_STRING,
+    VAR_BUFFER,
+    VAR_VOIDPTR,
+    VAR_RESOURCEREF,
+    VAR_RESOURCEREFLIST,
+    VAR_VARIANTVECTOR,
+    VAR_VARIANTMAP,
+    VAR_INTRECT,
+    VAR_INTVECTOR2,
+    VAR_PTR,
+    VAR_MATRIX3,
+    VAR_MATRIX3X4,
+    VAR_MATRIX4,
+    VAR_DOUBLE,
+    VAR_STRINGVECTOR,
+    VAR_RECT,
+    VAR_INTVECTOR3,
+    VAR_INT64,
+    VAR_CUSTOM_HEAP,
+    VAR_CUSTOM_STACK,
+    MAX_VAR_TYPES
 }
 
 [StructLayout(LayoutKind.Explicit)]
 public struct Variant
 {
     [FieldOffset(0)]
-    public VariantType Type;
+    private VariantType type_;
     
     [FieldOffset(8)]
-    public VariantValue Value;
+    public VariantValue value_;
     
     public Variant(int value)
     {
-        Type = VariantType.Int;
-        Value = new VariantValue();
-        Value.Int = value;
+        type_ = VariantType.VAR_INT;
+        value_ = new VariantValue();
+        value_.int_ = value;
+    }
+
+    public int GetInt()
+    {
+        return value_.int_;
     }
 
     public Variant(bool value)
     {
-        Type = VariantType.Bool;
-        Value = new VariantValue();
-        Value.Bool = value;
+        type_ = VariantType.VAR_BOOL;
+        value_ = new VariantValue();
+        value_.bool_ = value;
     }
     
+    public bool GetBool()
+    {
+        return value_.bool_;
+    }
+
     public Variant(float value)
     {
-        Type = VariantType.Float;
-        Value = new VariantValue();
-        Value.Float = value;
+        type_ = VariantType.VAR_FLOAT;
+        value_ = new VariantValue();
+        value_.float_ = value;
     }
+
+    public float GetFloat()
+    {
+        return value_.float_;
+    }
+    
+    public Variant(string value)
+    {
+        type_ = VariantType.VAR_NONE;
+        value_ = new VariantValue();
+        Variant_SetCString(ref this, value);
+    }
+    
+    public string GetString()
+    {
+        return Variant_GetCString(ref this);
+    }
+    
+    [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    private static extern string Variant_GetCString(ref Variant variant);
+    
+    [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    private static extern void Variant_SetCString(ref Variant variant, string value);
 }
 
 public class VariantMap

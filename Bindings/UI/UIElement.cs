@@ -3,18 +3,18 @@ using System.Runtime.InteropServices;
 
 public enum HorizontalAlignment
 {
-    LEFT = 0,
-    CENTER,
-    RIGHT,
-    CUSTOM
+    HA_LEFT = 0,
+    HA_CENTER,
+    HA_RIGHT,
+    HA_CUSTOM
 }
 
 public enum VerticalAlignment
 {
-    TOP = 0,
-    CENTER,
-    BOTTOM,
-    CUSTOM
+    VA_TOP = 0,
+    VA_CENTER,
+    VA_BOTTOM,
+    VA_CUSTOM
 }
 
 public class UIElement : Animatable
@@ -71,6 +71,21 @@ public class UIElement : Animatable
     {
         UIElement_AddChild(NativeInstance, element.NativeInstance);
     }
+    
+    public void SetPosition(int x, int y)
+    {
+        UIElement_SetPosition(NativeInstance, x, y);
+    }
+    
+    public int GetWidth()
+    {
+        return UIElement_GetWidth(NativeInstance);
+    }
+
+    public int GetHeight()
+    {
+        return UIElement_GetHeight(NativeInstance);
+    }
 
     [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     private static extern IntPtr UIElement_CreateChild(IntPtr nativeInstance, StringHash type, string name = "", uint index = Math.M_MAX_UNSIGNED);
@@ -98,4 +113,13 @@ public class UIElement : Animatable
     
     [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     private static extern void UIElement_AddChild(IntPtr nativeInstance, IntPtr element);
+    
+    [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    private static extern void UIElement_SetPosition(IntPtr nativeInstance, int x, int y);
+    
+    [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    private static extern int UIElement_GetWidth(IntPtr nativeInstance);
+
+    [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    private static extern int UIElement_GetHeight(IntPtr nativeInstance);
 }

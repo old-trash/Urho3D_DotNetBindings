@@ -110,7 +110,7 @@ static class MainClass
         // Keys.
         // static const int KEY_BACKQUOTE = SDLK_BACKQUOTE;
         result += "public enum Keys\r\n{\r\n";
-        string pattern = @"static const int KEY_(\w+)\s*=\s*(SDLK_\w+);";
+        string pattern = @"static const int (KEY_\w+)\s*=\s*(SDLK_\w+);";
         MatchCollection matches = Regex.Matches(source, pattern, RegexOptions.Singleline);
         for (int i = 0; i < matches.Count; i++)
         {
@@ -132,7 +132,7 @@ static class MainClass
         // Scancodes.
         // static const int SCANCODE_Z = SDL_SCANCODE_Z;
         result += "public enum Scancodes\r\n{\r\n";
-        pattern = @"static const int SCANCODE_(\w+)\s*=\s*(SDL_SCANCODE_\w+);";
+        pattern = @"static const int (SCANCODE_\w+)\s*=\s*(SDL_SCANCODE_\w+);";
         matches = Regex.Matches(source, pattern, RegexOptions.Singleline);
         for (int i = 0; i < matches.Count; i++)
         {

@@ -22,7 +22,7 @@ class StaticScene : Sample
         CreateScene();
     
         // Create the UI content
-        //CreateInstructions();
+        CreateInstructions();
     
         // Setup the viewport for displaying the scene
         SetupViewport();
@@ -90,6 +90,22 @@ class StaticScene : Sample
         cameraNode_.SetPosition(new Vector3(0.0f, 5.0f, 0.0f));
     }
     
+    void CreateInstructions()
+    {
+        ResourceCache cache = GetSubsystem<ResourceCache>();
+        UI ui = GetSubsystem<UI>();
+    
+        // Construct new Text object, set string to display and font to use
+        Text instructionText = ui.GetRoot().CreateChild<Text>();
+        instructionText.SetText("Use WASD keys and mouse/touch to move");
+        instructionText.SetFont(cache.GetResource<Font>("Fonts/Anonymous Pro.ttf"), 15);
+    
+        // Position the text relative to the screen center
+        instructionText.SetHorizontalAlignment(HorizontalAlignment.HA_CENTER);
+        instructionText.SetVerticalAlignment(VerticalAlignment.VA_CENTER);
+        instructionText.SetPosition(0, ui.GetRoot().GetHeight() / 4);
+    }
+
     void SetupViewport()
     {
         Renderer renderer = GetSubsystem<Renderer>();
@@ -112,7 +128,7 @@ class StaticScene : Sample
         VariantMap data = new VariantMap(eventData);
     
         // Take the frame time step, which is stored as a float
-        float timeStep = data["TimeStep"].Value.Float;
+        float timeStep = data["TimeStep"].GetFloat();
     
         // Move the camera, scale movement with time step
         MoveCamera(timeStep);
@@ -142,13 +158,13 @@ class StaticScene : Sample
     
         // Read WASD keys and move the camera scene node to the corresponding direction if they are pressed
         // Use the Translate() function (default local space) to move relative to the node's orientation.
-        if (input.GetKeyDown(Keys.W))
+        if (input.GetKeyDown(Keys.KEY_W))
             cameraNode_.Translate(Vector3.FORWARD * MOVE_SPEED * timeStep);
-        if (input.GetKeyDown(Keys.S))
+        if (input.GetKeyDown(Keys.KEY_S))
             cameraNode_.Translate(Vector3.BACK * MOVE_SPEED * timeStep);
-        if (input.GetKeyDown(Keys.A))
+        if (input.GetKeyDown(Keys.KEY_A))
             cameraNode_.Translate(Vector3.LEFT * MOVE_SPEED * timeStep);
-        if (input.GetKeyDown(Keys.D))
+        if (input.GetKeyDown(Keys.KEY_D))
             cameraNode_.Translate(Vector3.RIGHT * MOVE_SPEED * timeStep);
     }
 }

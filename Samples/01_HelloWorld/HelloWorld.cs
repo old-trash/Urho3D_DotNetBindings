@@ -45,8 +45,8 @@ class HelloWorld : Sample
         helloText.SetColor(new Color(0.0f, 1.0f, 0.0f));
 
         // Align Text center-screen
-        helloText.SetHorizontalAlignment(HorizontalAlignment.CENTER);
-        helloText.SetVerticalAlignment(VerticalAlignment.CENTER);
+        helloText.SetHorizontalAlignment(HorizontalAlignment.HA_CENTER);
+        helloText.SetVerticalAlignment(VerticalAlignment.VA_CENTER);
 
         // Add Text instance to the UI root element
         GetSubsystem<UI>().GetRoot().AddChild(helloText);

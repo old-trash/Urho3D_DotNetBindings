@@ -1,9 +1,44 @@
+//
+// Copyright (c) 2008-2017 the Urho3D project.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+//
+
 using System;
 using System.Runtime.InteropServices;
 using System.Reflection;
 
+/// Sample class, as framework for all samples.
+///    - Initialization of the Urho3D engine (in Application class)
+///    - Modify engine parameters for windowed mode and to show the class name as title
+///    - Create Urho3D logo at screen
+///    - Set custom window title and icon
+///    - Create Console and Debug HUD, and use F1 and F2 key to toggle them
+///    - Toggle rendering options from the keys 1-8
+///    - Take screenshot with key 9
+///    - Handle Esc key down to hide Console or exit application
+///    - Init touch input on mobile platform using screen joysticks (patched for each individual sample)
 class Sample : Application
 {
+    protected const float TOUCH_SENSITIVITY = 2.0f;
+
+
     public Sample(Context context) : base(context)
     {
        // SubscribeToEvent("Update", HandleUpdate);
@@ -11,12 +46,22 @@ class Sample : Application
 
     public override void Setup()
     {
-        //engineParameters_[EngineParameters.WindowTitle] = GetTypeName();
-        //engineParameters_[EP_LOG_NAME]     = GetSubsystem<FileSystem>()->GetAppPreferencesDir("urho3d", "logs") + GetTypeName() + ".log";
-        engineParameters_[EngineParameters.FullScreen]   = new Variant(false);
-        engineParameters_[EngineParameters.Headless]     = new Variant(false);
-        engineParameters_[EngineParameters.FrameLimiter] = new Variant(false);
-        //GC.Collect(); // FOR TEST ONLY
+        // Modify engine startup parameters
+        engineParameters_[EngineParameters.EP_WINDOW_TITLE] = new Variant(GetTypeName());
+        engineParameters_[EngineParameters.EP_LOG_NAME]     = new Variant(GetSubsystem<FileSystem>().GetAppPreferencesDir("urho3d", "logs") + GetTypeName() + ".log");
+        engineParameters_[EngineParameters.EP_FULL_SCREEN]  = new Variant(false);
+        engineParameters_[EngineParameters.EP_HEADLESS]     = new Variant(false);
+        engineParameters_[EngineParameters.EP_SOUND]        = new Variant(false);
+        
+        engineParameters_[EngineParameters.EP_FRAME_LIMITER]        = new Variant(false);
+
+        // Construct a search path to find the resource prefix with two entries:
+        // The first entry is an empty path which will be substituted with program/bin directory -- this entry is for binary when it is still in build tree
+        // The second and third entries are possible relative paths from the installed program/bin directory to the asset directory -- these entries are for binary when it is in the Urho3D SDK installation location
+        //if (!engineParameters_.Contains(EP_RESOURCE_PREFIX_PATHS))
+        //    engineParameters_[EP_RESOURCE_PREFIX_PATHS] = new Variant(";../share/Resources;../share/Urho3D/Resources");
+
+        GC.Collect(); // FOR TEST ONLY
     }
     
     /*void HandleUpdate(StringHash eventType, IntPtr eventData)
@@ -37,7 +82,7 @@ class Sample : Application
 
     public override void Start()
     {
-        Log.Write(LogLevel.Info, "!!!!!!!!!!!!!!!!!!!!! Start()");
+        Log.Write(LogLevel.LOG_INFO, "!!!!!!!!!!!!!!!!!!!!! Start()");
         Input input = context_.GetSubsystem<Input>();
         //input.SetMouseMode(MouseMode.Free);
         //input.SetMouseVisible(true);
@@ -98,7 +143,7 @@ class Sample : Application
         logoSprite_.SetHotSpot(textureWidth, textureHeight);
 
         // Set logo sprite alignment
-        logoSprite_.SetAlignment(HorizontalAlignment.RIGHT, VerticalAlignment.BOTTOM);
+        logoSprite_.SetAlignment(HorizontalAlignment.HA_RIGHT, VerticalAlignment.VA_BOTTOM);
 
         // Make logo not fully opaque to show the scene underneath
         logoSprite_.SetOpacity(0.9f);

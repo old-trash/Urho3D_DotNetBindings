@@ -3,11 +3,11 @@ using System.Runtime.InteropServices;
 
 public enum MouseMode
 {
-    Absolute = 0,
-    Relative,
-    Wrap,
-    Free,
-    Invalid
+    MM_ABSOLUTE = 0,
+    MM_RELATIVE,
+    MM_WRAP,
+    MM_FREE,
+    MM_INVALID
 }
 
 public class Input : Object

@@ -3,13 +3,13 @@ using System.Runtime.InteropServices;
 
 public enum LogLevel
 {
-    Raw = -1,
-    Trace,
-    Debug,
-    Info,
-    Warning,
-    Error,
-    None
+    LOG_RAW = -1,
+    LOG_TRACE = 0,
+    LOG_DEBUG = 1,
+    LOG_INFO = 2,
+    LOG_WARNING = 3,
+    LOG_ERROR = 4,
+    LOG_NONE = 5
 }
 
 public static class Log
