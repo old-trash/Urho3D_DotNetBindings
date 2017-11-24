@@ -114,11 +114,14 @@ public struct Variant
     
     public string GetString()
     {
-        return Variant_GetCString(ref this);
+        IntPtr nativeCString = Variant_GetCString(ref this);
+        string result = Marshal.PtrToStringAnsi(nativeCString);
+        Utils.FreeCString(nativeCString);
+        return result;
     }
     
     [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    private static extern string Variant_GetCString(ref Variant variant);
+    private static extern IntPtr Variant_GetCString(ref Variant variant);
     
     [DllImport(Consts.NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     private static extern void Variant_SetCString(ref Variant variant, string value);
