@@ -1,7 +1,7 @@
 # Urho3D_DotNetBindings
 
 ### 1. Building Native Library
-Build https://github.com/1vanK/Urho3D as x32 DLL.
+Build https://github.com/urho3d/Urho3D/pull/2171 as x32 DLL.
 
 ### 2. Building Bindings
 1) If you compiled the DLL as Release, in file "Bindings/Consts.cs" change "Urho3D_d" to "Urho3D".
