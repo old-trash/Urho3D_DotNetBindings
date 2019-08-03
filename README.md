@@ -1,4 +1,7 @@
-# Urho3D_DotNetBindings
+# Moved  to https://github.com/Dviglo/Dviglo/tree/CSharp
+
+
+## Urho3D_DotNetBindings
 
 ### 1. Building Native Library
 Build https://github.com/urho3d/Urho3D/pull/2171 as x32 DLL.
@@ -13,4 +16,3 @@ Build https://github.com/urho3d/Urho3D/pull/2171 as x32 DLL.
 3) Copy "Data" and "CoreData" to Samples folder.
 4) Run "Samples/BuildAll.bat".
 
-APPED: Moved  to https://github.com/Dviglo/Dviglo/tree/CSharp
