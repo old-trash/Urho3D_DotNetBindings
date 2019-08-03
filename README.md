@@ -12,3 +12,5 @@ Build https://github.com/urho3d/Urho3D/pull/2171 as x32 DLL.
 2) Copy "DotNetBindings.dll" to Samples folder.
 3) Copy "Data" and "CoreData" to Samples folder.
 4) Run "Samples/BuildAll.bat".
+
+APPED: Moved  to https://github.com/Dviglo/Dviglo/tree/CSharp
