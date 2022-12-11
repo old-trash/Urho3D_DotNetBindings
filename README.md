@@ -1,7 +1,4 @@
-# Moved  to https://github.com/Dviglo/Dviglo/tree/CSharp
-
-
-## Urho3D_DotNetBindings
+# Urho3D_DotNetBindings
 
 ### 1. Building Native Library
 Build https://github.com/urho3d/Urho3D/pull/2171 as x32 DLL.
